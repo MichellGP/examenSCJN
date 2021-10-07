@@ -1,0 +1,59 @@
+
+
+<br>
+<table class=" table table-container">
+    <thead class="thead-dark" >
+        <tr class="row-container">
+            <ng-container >
+                <th>Número</th>
+                <th scope="col" *ngFor="let encabezado of encabezados">{{encabezado | encabezado}}</th>
+                <th>Editar / Borrar</th>
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody class="tbody-container" >
+        <tr [id]="item.correoLocalID"
+            [tabindex]="i"
+            (click)="seleccionarEditar(item)" 
+            (blur)="quitarClase(item.correoLocalID)" 
+            [ngClass]="{
+                'row-container':true
+            }" 
+            *ngFor="let item of result;let i=index"
+        >
+            <td>{{i+1}}</td>
+            <td >{{item.correoLocalID}}</td>
+            <td >{{item.oficio}}</td>
+            <td >{{item.expediente}}</td>
+            <td >{{item.tipoPaqueteDesc}}</td>
+            <td >{{item.numeroPaquete}}</td>
+            <td >{{item.remitente}}</td>
+            <td >{{item.destinatario}}</td>
+            <td >{{item.fechaEnvio}}</td>
+            <td >{{item.fechaNotificacion}}</td>
+            <td>
+                <button (click)="eliminar(item.correoLocalID)" type="button" class="btn btn-danger">Eliminar</button>
+            </td>
+        </tr>
+        
+        <tr>
+            
+        </tr>
+        
+    </tbody>
+    
+    
+</table>
+
+<div class="alert-container" *ngIf="result.length===0">
+    <div class="alert alert-warning">
+        No se encontro ningun registro 
+    </div>
+</div>
+
+<div [ngClass]="{
+    'modal-container':true,
+    'hidden':hidden
+}">
+<app-modal-confirm [id]="idEliminacion" (optAceptar)="hidden=$event" class="container-modal" route="/" msg="¿Esta seguro de eliminar?" (optCancelar)="hidden=$event"></app-modal-confirm>
+</div>

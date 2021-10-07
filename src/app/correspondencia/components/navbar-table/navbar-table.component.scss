@@ -1,0 +1,11 @@
+.navbar-container{
+    width: 100%;
+    .buttons-container{
+        align-items: center;
+        display: grid;
+        gap: 1rem;
+        grid-auto-flow: column;
+        width: fit-content;
+
+    }
+}

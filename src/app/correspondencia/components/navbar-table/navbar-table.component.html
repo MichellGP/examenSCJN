@@ -1,0 +1,16 @@
+<div class="navbar-container">
+    <div class="buttons-container">
+        <button class="btn-style"  (click)="navegarAgregar()">Agregar</button>
+        <button class="btn-style" (click)="navegar()">Modificar</button>
+        <div class="consultarFecha-container consultar-container">
+            <label for="consultarFecha">
+                Consultar por fecha
+            </label>
+            <input [formControl]="inputCalendar" type="date" class="input-style" id="consultarFecha">
+        </div>
+        <div class="consultarID-container consultar-container">
+            <label for="consultarID">Consultar por ID</label>
+            <input (keyup.enter)="buscarPorId()" [formControl]="inputID" type="text" class="input-style" id="consultarID">
+        </div>
+    </div>
+</div>

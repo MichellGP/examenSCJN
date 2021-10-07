@@ -1,0 +1,47 @@
+<div class="agregar-container">
+    <form class="form-container" [formGroup]="miFormulario" (ngSubmit)=agregar()>
+        <div class="encabezado-form">
+            <h2 class="">{{titulo}} Correspondencia</h2>
+            <hr>
+        </div>
+        <div class="inputs-container">
+
+            <div class="input-container {{input}}-container" *ngFor="let input of inputs">
+                <div class="labels-containers">
+                    <label [for]="input">{{input | encabezado}}:</label>
+                </div>
+                <ng-container *ngIf="input!=='tipoPaquete'">
+                    <input class="" type="{{input | typeinput}}" [id]="input" [formControlName]="input" >
+                </ng-container>
+                <ng-container *ngIf="input==='tipoPaquete'">
+                    <select name="" id="" [formControlName]="input" [id]="input">
+                        <option [value]="opt.tipoPaqueteID" *ngFor="let opt of optTipoPaquete">{{opt.tipoPaqueteDesc}}</option>
+                    </select>
+                    
+                </ng-container>
+                    <label *ngIf="tieneError(input)" errors-msg [errormsg]="miFormulario.get(input)!.errors" ></label>
+            </div>
+            <div class="alert-container" *ngIf="alert">
+                <div class="alert alert-success">
+                    {{textAlert}}
+                </div>
+            </div>
+
+            <pre>{{miFormulario.pristine}}</pre>
+
+        </div>
+        <div class="buttons-container">
+            <button class="btn btn-primary" type="submit" [disabled]="miFormulario.pristine" >Aceptar</button>
+            <button (click)="cancelar()" class="btn btn-danger " type="button"> Cancelar</button>
+        </div>
+    </form>
+</div>
+
+<div (click)="classToggle()" [ngClass]="{
+                'modal-container':true,
+                'hidden':hidden
+}">
+    <app-modal-confirm class="container-modal" route="/" msg="¿Esta seguro de cancelar?" (optCancelar)="hidden=$event"></app-modal-confirm>
+</div>
+
+    
